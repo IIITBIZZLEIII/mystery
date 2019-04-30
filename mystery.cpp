@@ -29,21 +29,12 @@ void mystery1(auto& Data)
 void mystery2(auto& Data)
 {
 	cout<<endl<<"Mystery 2"<<endl<<endl;
-	int x, y, unsort, tmp;
-	for (x = 0; x < Data.size()-1; x++)
+	for(int x = 0; x < Data.size(); x++)
 	{
-		unsort = x;
-		for (y = x + 1; y < Data.size(); y++)
-		{
-			if(Data[y] < Data[unsort])
-				unsort = y;
-		}
-		if (unsort != x)
-		{
-			tmp = Data[x];
-			Data[x] = Data[unsort];
-			Data[unsort] = tmp;
-		}
+		for(int y = 0; y < Data.size()-1; y++)
+		if(Data[y+1] < Data[y])
+		swap(Data[y+1], Data[y]);
+		
 	print(Data);
 	}
 }
@@ -51,22 +42,13 @@ void mystery2(auto& Data)
 void mystery3(auto& Data)
 {
 	cout<<endl<<"Mystery 3"<<endl<<endl;
-	int nxtIdex, move, instVal;
-	
-	for (nxtIdex = 1; nxtIdex < Data.size(); nxtIdex++)
+	for( int x = 0; x < Data.size(); x++)
 	{
-		instVal = Data[nxtIdex];
-		move = nxtIdex;
-		
-		while(move > 0 && Data[move - 1] > instVal)
-		{
-			Data[move] = Data[move - 1];
-			move--;
-		}
-		Data[move] = instVal;
+		for(int y = x; y < Data.size(); y++)
+		if(Data[y] < Data[x])
+		swap(Data[y], Data[x]);
 	print(Data);
-	}
-	
+	}	
 }
 
 int main()
